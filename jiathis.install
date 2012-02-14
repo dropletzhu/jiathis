@@ -1,0 +1,19 @@
+<?php
+
+/**
+ * @file
+ * Enable and uninstall functions for the jiathis module.
+ */
+
+/**
+ * Implements hook_enable().
+ */
+function jiathis_enable() {
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function jiathis_uninstall() {
+  variable_del('jiathis_script');
+}

@@ -1,0 +1,56 @@
+<?php
+// $Id$
+/**
+ * @file
+ * Main module file for the jiathis service
+ */
+
+/**
+ * Implements hook_perm().
+ * Permissions for jiathis service
+ */
+function jiathis_perm() {
+  $perms[] = 'administer jiathis service';
+  $perms[] = 'view jiathis service';
+  return $perms;
+}
+
+
+/**
+ * Implements hook_menu().
+ */
+function jiathis_menu() {
+	  $items['admin/settings/jiathis-service'] = array(
+	    'title'            => 'Jiathis service',
+	    'description'      => 'Configure jiathis service settings',
+	    'page callback'    => 'drupal_get_form',
+	    'page arguments'   => array('jiathis_admin_settings'),
+	    'access arguments' => array('administer jiathis service'),
+	    'file'             => 'jiathis.admin.inc',
+	  );
+	  return $items;
+}
+
+/**
+ * Implements hook_link().
+ * Add a button tag to the link section of the node (teaser or full node).
+ */
+function jiathis_link($type, $node = NULL, $teaser = FALSE) {
+  $links = array();
+  if ( $type == 'node'
+    && user_access('view jiathis service')) {
+
+    $script_settings = variable_get('jiathis_script', $default);
+    $links['jiathis_service'] = array(
+      'title' => $script_settings,
+      'html' => TRUE,
+    );
+  }
+  return $links;
+}
+
+/**
+ * @} End of "Jiathis Service Module".
+ */
+
+ 
