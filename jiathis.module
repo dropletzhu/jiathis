@@ -38,6 +38,7 @@ function jiathis_menu() {
 function jiathis_link($type, $node = NULL, $teaser = FALSE) {
   $links = array();
   if ( $type == 'node'
+    && $teaser == FALSE
     && user_access('view jiathis service')) {
 
     $script_settings = variable_get('jiathis_script', $default);
